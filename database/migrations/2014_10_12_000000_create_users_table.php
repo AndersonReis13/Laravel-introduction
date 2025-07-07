@@ -17,8 +17,13 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->enum('tipo', ['admin', 'cliente', 'proprietario'])->default('cliente');
+            $table->string('telefone')->nullable();
+            $table->string('foto_perfil')->nullable();
             $table->rememberToken();
             $table->timestamps();
+
+            $table->index(['email', 'tipo']);
         });
     }
 
