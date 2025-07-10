@@ -13,8 +13,7 @@ return new class extends Migration
     {
         Schema::create('enderecos', function (Blueprint $table) {
             $table->id();
-            $table->string('enderecavel_type');
-            $table->unsignedBigInteger('enderecavel_id');
+            $table->morphs('enderecavel'); // Relaçoes polimórficas
             $table->string('cep', 8);
             $table->string('logradouro');
             $table->string('numero', 20);
@@ -27,7 +26,6 @@ return new class extends Migration
             $table->boolean('principal')->default(false);
             $table->timestamps();
 
-            $table->index(['enderecavel_type', 'enderecavel_id']);
             $table->index('cep');
             $table->index(['cidade', 'uf']);
         });

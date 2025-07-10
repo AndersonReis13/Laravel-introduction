@@ -16,7 +16,6 @@ return new class extends Migration
         $table->foreignId('usuario_id')->constrained('users')->onDelete('cascade');
         $table->string('nome_fantasia');
         $table->string('razao_social')->nullable();
-        $table->string('slug')->unique();
         $table->text('descricao')->nullable();
         $table->string('logo_url')->nullable();
         $table->string('capa_url')->nullable();
@@ -24,6 +23,8 @@ return new class extends Migration
         $table->string('cnpj', 18)->nullable()->unique();
         $table->time('horario_abertura');
         $table->time('horario_fechamento');
+        $table->foreignId('endereco_principal_id')->nullable()->constrained('enderecos')
+            ->onDelete('set null');
         $table->decimal('taxa_entrega', 10, 2)->default(0);
         $table->integer('tempo_entrega_minimo')->nullable();
         $table->integer('tempo_entrega_maximo')->nullable();

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('pizzaria_id')->constrained()->onDelete('cascade');
             $table->foreignId('endereco_id')->constrained('enderecos')->onDelete('cascade');
             $table->string('codigo')->unique();
-            $table->enum('status', ['recebido', 'preparando', 'saiu_entrega', 'entregue', 'cancelado'])->default('recebido');
+            $table->enum('status', ['recebido', 'preparando', 'saiu_entrega', 'entregue', 'cancelado']);
             $table->decimal('subtotal', 10, 2);
             $table->decimal('taxa_entrega', 10, 2);
             $table->decimal('desconto', 10, 2)->default(0);

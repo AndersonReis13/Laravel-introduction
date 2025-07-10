@@ -16,13 +16,11 @@ return new class extends Migration
         $table->foreignId('pizzaria_id')->constrained()->onDelete('cascade');
         $table->foreignId('categoria_id')->nullable()->constrained()->onDelete('set null');
         $table->string('nome');
-        $table->string('slug')->unique();
         $table->text('descricao')->nullable();
         $table->decimal('preco', 10, 2);
         $table->string('imagem_url')->nullable();
         $table->boolean('disponivel')->default(true);
         $table->boolean('destaque')->default(false);
-        $table->integer('ordem')->default(0);
         $table->timestamps();
 
         $table->index(['pizzaria_id', 'disponivel']);

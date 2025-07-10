@@ -1,6 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
+use Illuminate\Support\Str;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +20,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+
+Route::get('/model', function () {
+    $users = new \App\Models\User();
+
+    $users->name = 'Anderson';
+    $users->email = 'andersonline61@gmail.com';
+    $users->password = bcrypt('senha123');
+
+
+    return \App\Models\User::all();
 });

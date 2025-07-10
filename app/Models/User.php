@@ -21,6 +21,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'tipo',
+        'telefone',
+        'foto_perfil',
+        'endereco_principal_id'
     ];
 
     /**
@@ -41,5 +45,18 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+        'tipo' => 'string',
     ];
+
+    public function endereco()
+    {
+        return $this->morphMany(Endereco::class, 'enderecavel');
+    }
+
+    public function setTipo($value)
+    {
+        $this->attributes['tipo'] = strtolower($value);
+    }
+
+
 }

@@ -20,8 +20,11 @@ return new class extends Migration
             $table->enum('tipo', ['admin', 'cliente', 'proprietario'])->default('cliente');
             $table->string('telefone')->nullable();
             $table->string('foto_perfil')->nullable();
+            $table->foreignId('endereco_principal_id')->nullable()->constrained('enderecos')
+                ->onDelete('set null');
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
 
             $table->index(['email', 'tipo']);
         });

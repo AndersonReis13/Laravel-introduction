@@ -12,13 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('avaliacoes', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('item_pedido_id')->constrained('itens_pedido')->onDelete('cascade');
-            $table->string('nome_opcao');
-            $table->string('nome_item');
-            $table->decimal('preco_adicional', 10, 2);
-            $table->timestamps();
-        });
+                $table->id();
+                $table->foreignId('usuario_id')->constrained('users')->onDelete('cascade');
+                $table->foreignId('pizzaria_id')->constrained()->onDelete('cascade');
+                $table->foreignId('pedido_id')->nullable()->constrained()->onDelete('set null');
+                $table->tinyInteger('nota');
+                $table->text('comentario')->nullable();
+                $table->timestamps();
+            });
     }
 
     /**
